@@ -1,5 +1,6 @@
 import os
 import random
+import re
 
 from yaml import load
 try:
@@ -14,11 +15,11 @@ from telegram.ext import MessageHandler, Filters
 TOKEN = os.environ['WURFEL_TG_TOKEN']
 DICE_FILE = os.getenv('WURFEL_FILES', 'dices.yaml')
 
-DICES = {}
-TRIGGERS = {}
 with open(DICE_FILE) as f:
     dices = load(f, Loader=Loader)
-dices['triggers'] = set(t.lower() for t in dices['triggers'])
+
+re_triggers = re.compile('|'.join(dices['triggers']), re.I)
+parse_mode = ParseMode.MARKDOWN if dices['markdown'] else None
 
 
 def throw(dices):
@@ -40,14 +41,14 @@ def throw(dices):
 
 def throw_command(update: Update, context: CallbackContext) -> None:
     text = throw(dices)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text, parse_mode=parse_mode)
 
 
 def throw_trigger(update, context):
     #if TRIGGER_RE.search(update.message.text):
-    if dices['triggers'] & set(update.message.text.lower().split()):
+    if re_triggers.search(update.message.text):
         text = throw(dices)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=text, parse_mode=parse_mode)
 
 
 updater = Updater(TOKEN)
