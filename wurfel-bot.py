@@ -22,7 +22,20 @@ dices['triggers'] = set(t.lower() for t in dices['triggers'])
 
 
 def throw(dices):
-    return dices['separator'].join([str(random.choice(values)) for values in dices['dices']])
+
+    # randomly select values
+    results = [random.choice(values) for values in dices['dices']]
+
+    # resolve annotations
+    while True:
+        lengths = [len(i) if isinstance(i, dict) else 0 for i in results]
+        if not any(lengths):
+            break
+        i = lengths.index(1)
+        key = list(results[i].keys())[0]
+        results = [i.get(key, i) if isinstance(i, dict) else i for i in results]
+
+    return dices['separator'].join(map(str, results))
 
 
 def throw_command(update: Update, context: CallbackContext) -> None:
