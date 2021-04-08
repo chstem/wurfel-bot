@@ -30,6 +30,8 @@ def throw(dices):
     # resolve annotations
     while True:
         lengths = [len(i) if isinstance(i, dict) else 0 for i in results]
+        if not any(lengths):
+            break
         try:
             i = lengths.index(1)
         except ValueError:

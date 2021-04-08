@@ -1,6 +1,7 @@
 triggers:
   - roll
   - dice
+markdown: false
 separator: " "
 dices:
   - - 1: "dice1:"
