@@ -30,9 +30,10 @@ def throw(dices):
     # resolve annotations
     while True:
         lengths = [len(i) if isinstance(i, dict) else 0 for i in results]
-        if not any(lengths):
-            break
-        i = lengths.index(1)
+        try:
+            i = lengths.index(1)
+        except ValueError:
+            raise ValueError('No single key found. Check your yaml file.')
         key = list(results[i].keys())[0]
         results = [i.get(key, i) if isinstance(i, dict) else i for i in results]
 
