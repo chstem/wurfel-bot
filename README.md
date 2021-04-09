@@ -4,7 +4,7 @@ A Python Telegram Bot to create sentences by randomly choosing from a list of pr
 
 ## Configuration
 
-Set the environment variables `WURFEL_TG_TOKEN` with your Telegram bot token and `WURFEL_FILES` with the path to your custom YAML file.
+Set the environment variables `WURFEL_TG_TOKEN` with your Telegram bot token and `WURFEL_FILES` with a comma separated list of the path to your custom YAML file(s).
 
 The YAML file inlcudes some basic configuration and the text snippets to build a randomly generated sentence. See `dices.yaml` for a very basic example and `pets.yaml` a slightly more complex one.
 
