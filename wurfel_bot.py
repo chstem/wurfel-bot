@@ -13,7 +13,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram.ext import MessageHandler, Filters
 
 TOKEN = os.environ['WURFEL_TG_TOKEN']
-DICE_FILE = os.getenv('WURFEL_FILES', 'dices.yaml')
+DICE_FILE = os.getenv('WURFEL_FILES', 'pets.yaml')
 
 with open(DICE_FILE) as f:
     dices = load(f, Loader=Loader)

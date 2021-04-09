@@ -1,0 +1,20 @@
+triggers:
+  - pet
+markdown: true
+separator: " "
+dices:
+  - - female: Alice
+    - male: Bob
+  - - feeds
+    - pets
+  - - female: her
+      male: his
+  - - 1: _only_
+    - 2: "*two*"
+    - 3: "*three*"
+  - - 1: dog 🐶
+      2: dogs 🐶🐶
+      3: dogs 🐶🐶🐶
+    - 1: cat 😸
+      2: cats 😸😸
+      3: cats 😸😸😸

@@ -4,16 +4,14 @@ triggers:
 markdown: false
 separator: " "
 dices:
-  - - 1: "dice1:"
-      2: "d6:"
+  - - "d6:"
   - - 1
     - 2
     - 3
     - 4
     - 5
     - 6
-  - - 1: "dice2:"
-    - 2: "d4:"
+  - - "d4:"
   - - 1
     - 2
     - 3
